@@ -1,6 +1,6 @@
 
 #--------------------------------------------------
-# Julia program for Fourier estimation method     #
+# Script for Fourier estimation method            #
 #--------------------------------------------------
 # Author: Mutaz Jaber © 2020 <jaber038@umn.edu>   #
 # GitHub: Mutaz94                                 #
@@ -17,16 +17,14 @@
 using LinearAlgebra, Optim, Plots
 using CSV
 
-# this is one harmonic model just for testing the optimizer
-# delete this after the run.
 # Importing some data to test
-df = CSV.read("./Documents/R_projects/HydroC-Precision/HydroC-Pump/health.csv")
+df = CSV.read("../data.csv")
 
 time = convert(Array, df.TIME)
 Conc = convert(Array, df.AVG)
 
 using LsqFit
-res = fit.resid
+
 
  function fourEst!(t,p)
             a₀, a_1, b_1, a_2, b_2 = p
@@ -39,6 +37,7 @@ init = [0.1, 0.2, 0.1, 1, 1]
 
 fit2 = curve_fit(fourEst!, time, Conc, init)
 est = fit2.param
+res = fit2.residual
 pred = fourEst!(time, est)
 
 using Plots; plotly()
