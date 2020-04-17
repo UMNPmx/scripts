@@ -23,6 +23,8 @@ df = CSV.read("../data.csv")
 time = convert(Array, df.TIME)
 Conc = convert(Array, df.AVG)
 
+Conc_norm = normalize(Conc) #to preserve the shape 
+
 using LsqFit
 
 
@@ -34,19 +36,20 @@ end
 
 init = [0.1, 0.2, 0.1, 1, 1]
 
+fit_norm = curve_fit(fourEst!, time, Conc_norm, init)
+fit2 = curve_fit(fourEst!, time, Conc, init) #this is not normalized
 
-fit2 = curve_fit(fourEst!, time, Conc, init)
-est = fit2.param
-res = fit2.residual
+est = fit_norm.param
+res = fit_norm.residual
 pred = fourEst!(time, est)
 
 using Plots; plotly()
 plot(time, pred)
-plot!(time, Conc)
+plot!(time, Conc_norm)
 scatter(time, res)
 
 # L2 approximation function to check the percentage
-# of each harmonic.
+# of each harmonic (Contribution).
 
 function L2_approx(est)
     a₀, a₁, b₁, a₂, b₂ = est
