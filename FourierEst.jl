@@ -1,8 +1,9 @@
 
 #--------------------------------------------------
 # Script for Fourier estimation method            #
+# UMN, Pharmacometrics © 2020                     #
 #--------------------------------------------------
-# Author: Mutaz Jaber © 2020 <jaber038@umn.edu>   #
+# Author: Mutaz Jaber                             #
 # GitHub: Mutaz94                                 #
 #--------------------------------------------------
 # different harmonics will be used and it depends #
