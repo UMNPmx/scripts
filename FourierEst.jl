@@ -68,3 +68,4 @@ end
 
 percentage = L2_approx(est)
 
+# Reference for this algorithm: Wojciech Krzyzanski, Abhijit Chakraborty & William J. Jusko (2000) ALGORITHM FOR APPLICATION OF FOURIER ANALYSIS FOR BIORHYTHMIC BASELINES OF PHARMACODYNAMIC INDIRECT RESPONSE MODELS, Chronobiology International, 17:1, 77-93, DOI: 10.1081/CBI-100101034
